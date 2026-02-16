@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\AcademicLevelController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\Admin\CareerSubmissionController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\TestimonialController;
 
 
 Route::get('/', function () {
@@ -34,4 +36,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('career-submissions', [CareerSubmissionController::class, 'index'])->name('career-submissions.index');
     Route::get('career-submissions/{careerSubmission}/cv', [CareerSubmissionController::class, 'downloadCv'])
     ->name('career-submissions.cv');
+    Route::resource('news', NewsController::class)->parameters(['news' => 'news']);
+    Route::resource('testimonials', TestimonialController::class);
+
 });
